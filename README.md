@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blog Application
 
-## Getting Started
+This is a blog application built with **Next.js**, **TypeScript**, **React**, **Tailwind CSS**, **Prisma**, **MongoDB**, **Cloudinary**, and **NextAuth**. It allows users to create, read, and manage blog posts with secure authentication and image uploads.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **User Authentication** with **NextAuth** (supports github, google providers).
+- **Blog Post Management**: Create, Read, Edit, Delete and List blog posts.
+- **Image Upload** using **Cloudinary**.
+- **Responsive Design** powered by **Tailwind CSS**.
+- **Backend API** using **Prisma** with **MongoDB** for data storage.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screenshots
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![Blog Homepage](public/blog-homepage.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Prerequisites
 
-## Learn More
+Before you begin, ensure you have the following installed on your local machine:
 
-To learn more about Next.js, take a look at the following resources:
+- **Node.js** (v16 or later)
+- **npm** (or **yarn** or **pnpm**)
+- **MongoDB** (or a cloud instance like MongoDB Atlas)
+- **Cloudinary Account** for image upload configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Local Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the Repository
 
-## Deploy on Vercel
+	```bash
+	git clone https://github.com/kundusubrata/blog-application.git
+	cd blog-application
+	```
+2. Install Dependencies
+	```bash
+	pnpm install
+	```
+3.  Configure Environment Variables
+	Create a `.env` file in the root of your project and add the necessary environment variables. Obtain the required values from the GitHub Developer Settings[https://github.com/settings/developers], Google Cloud Console[https://console.developers.google.com/apis/credentials], and Cloudinary upload[https://console.cloudinary.com/settings/c-83e3a396836394c5dbb29277cf4987/upload]. Replace the placeholders with your actual credentials for GitHub, Google, Cloudinary, and MongoDB.
+	```bash
+	GITHUB_CLIENT_ID=
+	GITHUB_CLIENT_SECRET=
+	GOOGLE_CLIENT_ID=
+	GOOGLE_CLIENT_SECRET=
+	NEXTAUTH_URL=http://localhost:3000
+	NEXTAUTH_SECRET=MD23kjNvuj7WTIDYcM1T9kPB+uCChqj4ERN1Uu6pykKY=
+	DATABASE_URL=""
+	NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=""
+	NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=""
+	CLOUDINARY_API_KEY=
+	CLOUDINARY_API_SECRET=
+	```
+4. Prisma Setup
+	```bash
+	npx prisma db pull
+	npx prisma migrate dev --name model-added
+	npx prisma generate
+	npx prisma studio
+	```
+5. Run the Development Server
+	```bash
+	pnpm run dev
+	```
+	This will start the development server at `http://localhost:3000`.
+6. Access the Application
+	Open your browser and navigate to `http://localhost:3000` to see the blog application in action.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Testing the Application
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can log in using the authentication provider you’ve configured (e.g., GitHub, Google, or custom credentials). Once logged in, you can create and view blog posts, and upload images to Cloudinary.
+
+## Contributing
+
+Feel free to fork this repository, create a branch, and submit pull requests for any improvements or fixes.
